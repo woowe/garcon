@@ -1,3 +1,20 @@
 <h1>
   {{title}}
+
 </h1>
+
+<div class="controls">
+  <!-- <input type="text" name="name" [(ngModel)]="radius"> -->
+  <md-slider [(ngModel)]="radius" min="10" max="1000" #slidey></md-slider>
+</div>
+
+<div class="floor-view">
+  <div class="circle table"
+       draggable="true"
+       (drag)="onDrag($event, dragData)"
+       [ngStyle]="{
+                    'width': slidey.value + 'px',
+                    'height': slidey.value + 'px',
+                    'transform': 'translate('+ (x === null ? '50vw' : (x - slidey.value / 2) + 'px') + ','+ (y === null ? '50vh' : (y - slidey.value / 2) + 'px') + ')'
+                  }"></div>
+</div>

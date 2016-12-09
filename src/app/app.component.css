@@ -1,0 +1,27 @@
+
+.floor-view {
+  display: flex;
+}
+
+.circle {
+  border-radius: 50%;
+}
+
+.table {
+  background-color: rgba(0, 0, 0, 0.2);
+  transition: box-shadow 0.3s ease;
+  box-shadow: 0px 0px 1px 1px rgba(0, 0, 0, 0.55);
+  position: absolute;
+  z-index: 0;
+  left: 0;
+  top: 0;
+  /*-webkit-user-drag: none;
+  -khtml-user-drag: none;
+  -moz-user-drag: none;
+  -o-user-drag: none;
+  user-drag: none;*/
+}
+
+.table:hover {
+  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.65);
+}
