@@ -8,10 +8,12 @@ import { AppComponent } from './app.component';
 import { MaterialModule } from '@angular/material';
 
 import 'hammerjs';
+import { FloorView } from './floor/floor.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    FloorView
   ],
   imports: [
     BrowserModule,
