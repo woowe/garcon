@@ -35,8 +35,8 @@ export class FloorView implements OnInit {
       var idx = this.table_moving.idx;
 
       var svgele_rect = svgele.getBoundingClientRect();
-      var x = svgele_rect.left - event.clientX;
-      var y = svgele_rect.top - event.clientY;
+      var x =  event.clientX - svgele_rect.left;
+      var y =  event.clientY - svgele_rect.top;
 
       console.log('X: ', x, " Y: ", y);
 
