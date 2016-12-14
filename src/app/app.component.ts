@@ -17,7 +17,7 @@ export class AppComponent {
   }
   mouseDown(event) {
     this.mouseIsDown = true;
-    console.log('MOUSE DOWN: ', this.mouseIsDown);
+    // console.log('MOUSE DOWN: ', this.mouseIsDown);
     // console.log('MOUSE X: ', event.clientX);
     // console.log('MOUSE Y: ', event.clientY);
     if(event.clientX > 0) { this.x = event.clientX; }
@@ -30,13 +30,13 @@ export class AppComponent {
       if(this.floor_scale < 0) {
         this.floor_scale = 0;
       }
-      console.log('MOUSE WHEEL: ', this.floor_scale);
+      // console.log('MOUSE WHEEL: ', this.floor_scale);
     }
     event.preventDefault();
   }
 
   mouseUp(event) {
     this.mouseIsDown = false;
-    console.log('MOUSE UP: ', this.mouseIsDown);
+    // console.log('MOUSE UP: ', this.mouseIsDown);
   }
 }

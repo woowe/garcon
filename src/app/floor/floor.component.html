@@ -1,10 +1,21 @@
-<div class="floor-view">
-  <svg width="1920" height="1000" viewbox="0 0 1920 1000">
-    {{this.test}}
+<div #svgele class="floor-view">
+  <svg  width="1920" height="1000" viewbox="0 0 1920 1000"
+  (mouseup)="mouseUpTable($event)"
+  (mousemove)="mouseMoveTable($event, svgele)">
+    <g *ngFor="let table of tables; let i = index">
+      <g *ngIf="table.type === 'circle'">
+        <circle [attr.cx]="table.attributes.cx" [attr.cy]="table.attributes.cy"
+        [attr.r]="table.attributes.r"
+        (mousedown)="mouseDownTable($event, table.type, i)"/>
+      </g>
+      <g *ngIf="table.type === 'square'">
+        <rect [attr.x]="table.attributes.x" [attr.y]="table.attributes.y"
+        [attr.width]="table.attributes.width" [attr.height]="table.attributes.height"
+        (mousedown)="mouseDownTable($event, table.type, i)" />
+      </g>
+    </g>
     <!-- <circle cx="65" cy="65" r="50" stroke="black" fill="white"/>
-
     <rect x="130" y="15" width="100" height="100" stroke="black" fill="white"/>
-
     <rect x="245" y="15" width="200" height="100" stroke="black" fill="white"/> -->
   </svg>
 </div>
