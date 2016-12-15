@@ -3,15 +3,14 @@
   (mouseup)="mouseUpTable($event)"
   (mousemove)="mouseMoveTable($event, svgele)">
     <g *ngFor="let table of tables; let i = index">
-      <g *ngIf="table.type === 'circle'">
-        <circle [attr.cx]="table.attributes.cx" [attr.cy]="table.attributes.cy"
-        [attr.r]="table.attributes.r"
-        (mousedown)="mouseDownTable($event, table.type, i)"/>
+      <g *ngIf="table.type === 'circle'" (mousedown)="mouseDownTable($event, table.type, i)">
+        <circle [attr.cx]="table.attributes.cx" [attr.cy]="table.attributes.cy" [attr.r]="table.attributes.r" [attr.style]="table.attributes.style_str"/>
+        <!-- <text [attr.x]="table.attributes.x" [attr.y]="table.attributes.y" font-family="Verdana" font-size="35">{{i}}</text> -->
       </g>
-      <g *ngIf="table.type === 'square'">
+      <g *ngIf="table.type === 'square'" (mousedown)="mouseDownTable($event, table.type, i)" >
         <rect [attr.x]="table.attributes.x" [attr.y]="table.attributes.y"
-        [attr.width]="table.attributes.width" [attr.height]="table.attributes.height"
-        (mousedown)="mouseDownTable($event, table.type, i)" />
+        [attr.width]="table.attributes.width" [attr.height]="table.attributes.height" [attr.style]="table.attributes.style_str"/>
+        <!-- <text [attr.x]="table.attributes.x" [attr.y]="table.attributes.y" font-family="Verdana" font-size="35">{{i}}</text> -->
       </g>
     </g>
     <!-- <circle cx="65" cy="65" r="50" stroke="black" fill="white"/>

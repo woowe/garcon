@@ -22,7 +22,32 @@ export class FloorView implements OnInit {
   getFloor() {
     this._floorsService.getFloor(this.floor_idx).then((floor: IFloor) => {
       this.tables = floor.tables;
+      this.updateStyleString(0);
     });
+  }
+
+  updateStyleString(idx: number) {
+    var style_str: string = "";
+    for(var rule in this.tables[idx].attributes.style) {
+      if(rule.toString() === 'transform') {
+        // style_str += "transform: ";
+        // for(var trule in this.tables[idx].attributes.style[rule]) {
+        //   style_str += trule.toString() + "( ";
+        //   if(typeof this.tables[idx].attributes.style[rule][trule] !== 'Array') {
+        //     style_str += this.tables[idx].attributes.style[rule][trule].toString();
+        //   } else {
+        //     style_str += this.tables[idx].attributes.style[rule][trule].join(', ');
+        //   }
+        //   style_str += " ), ";
+        // }
+      } else {
+        style_str += rule.toString() + ": ";
+        style_str += this.tables[idx].attributes.style[rule].toString();
+      }
+      style_str += "; ";
+    }
+    console.log(style_str);
+    this.tables[idx].attributes.style_str = style_str;
   }
 
   mouseUpTable(event) {
@@ -35,19 +60,17 @@ export class FloorView implements OnInit {
       var idx = this.table_moving.idx;
 
       var svgele_rect = svgele.getBoundingClientRect();
-      var x =  event.clientX - svgele_rect.left;
-      var y =  event.clientY - svgele_rect.top;
-
-      console.log('X: ', x, " Y: ", y);
+      var x =  (event.clientX - svgele_rect.left) / svgele_rect.width * 1920;
+      var y =  (event.clientY - svgele_rect.top) / svgele_rect.height * 1000;
 
       switch(type) {
         case "circle":
-          this.tables[idx].attributes.cx = x * (1);
-          this.tables[idx].attributes.cy = y * (1);
+          this.tables[idx].attributes.cx = x;
+          this.tables[idx].attributes.cy = y;
           break;
         case "square":
-          this.tables[idx].attributes.x = x * (1);
-          this.tables[idx].attributes.y = y * (1);
+          this.tables[idx].attributes.x = x - this.tables[idx].attributes.width/2;
+          this.tables[idx].attributes.y = y - this.tables[idx].attributes.height/2;
           break;
         default:
           break;
